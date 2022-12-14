@@ -1,7 +1,7 @@
 # sxhkdrc-mode for GNU Emacs
 
 This is a major mode for editing `sxhkdrc` files.  SXHKD is the Simple
-X Hotkey Daemon which is commonly used in minimalist desktop sessions
+X Hot Key Daemon which is commonly used in minimalist desktop sessions
 on Xorg, such as with the Binary Space Partitioning Window Manager
 (BSPWM).  The `sxhkdrc` file configures key chords, binding them to
 commands.  For the technicalities, read the man page `sxhkd(1)`.

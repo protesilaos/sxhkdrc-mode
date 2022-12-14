@@ -6,7 +6,7 @@
 ;; Maintainer: Protesilaos Stavrou General Issues <~protesilaos/general-issues@lists.sr.ht>
 ;; URL: https://git.sr.ht/~protesilaos/sxhkdrc-mode
 ;; Mailing-List: https://lists.sr.ht/~protesilaos/general-issues
-;; Version: 0.1.0
+;; Version: 0.1.1
 ;; Package-Requires: ((emacs "27.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -29,7 +29,7 @@
 ;; Major mode for editing sxhkdrc files (Simple X Hot Key Daemon).  It
 ;; defines basic fontification rules and supports indentation.
 ;;
-;; SXHKD is the Simple X Hotkey Daemon which is commonly used in
+;; SXHKD is the Simple X Hot Key Daemon which is commonly used in
 ;; minimalist desktop sessions on Xorg, such as with the Binary Space
 ;; Partitioning Window Manager (BSPWM).
 ;;
