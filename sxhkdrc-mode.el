@@ -6,7 +6,7 @@
 ;; Maintainer: Protesilaos Stavrou General Issues <~protesilaos/general-issues@lists.sr.ht>
 ;; URL: https://git.sr.ht/~protesilaos/sxhkdrc-mode
 ;; Mailing-List: https://lists.sr.ht/~protesilaos/general-issues
-;; Version: 0.1.2
+;; Version: 0.1.3
 ;; Package-Requires: ((emacs "27.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -93,7 +93,7 @@ key chord chain (demarcated by a colon or semicolon)."
        (1 'sxhkdrc-mode-command-async t t)
        (2 'sxhkdrc-mode-command t t))
       (,(alist-get 'comment syntax)
-       (0 'font-lock-comment-face))
+       (0 'font-lock-comment-face t t))
       (,(alist-get 'key-generic syntax)
        (0 'sxhkdrc-mode-generic-key))))
   "Fontification of sxhkdrc files.")
