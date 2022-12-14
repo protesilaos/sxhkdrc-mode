@@ -6,7 +6,7 @@
 ;; Maintainer: Protesilaos Stavrou General Issues <~protesilaos/general-issues@lists.sr.ht>
 ;; URL: https://git.sr.ht/~protesilaos/sxhkdrc-mode
 ;; Mailing-List: https://lists.sr.ht/~protesilaos/general-issues
-;; Version: 0.1.3
+;; Version: 0.1.4
 ;; Package-Requires: ((emacs "27.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -104,13 +104,16 @@ key chord chain (demarcated by a colon or semicolon)."
   (let ((syntax sxhkdrc-mode-syntax))
     (save-excursion
       (beginning-of-line)
-      (when (or (not (looking-at (alist-get 'key-generic syntax)))
-                (save-excursion
-                  (forward-line -1)
-                  (beginning-of-line)
-                  (looking-at (alist-get 'key-generic syntax))))
-        (delete-horizontal-space)
-        (indent-to (alist-get 'indent-command syntax))))))
+      (delete-horizontal-space)
+      (cond
+       ((looking-at (alist-get 'comment syntax))
+        (indent-to (alist-get 'indent-other syntax)))
+       ((or (not (looking-at (alist-get 'key-generic syntax)))
+            (save-excursion
+              (forward-line -1)
+              (beginning-of-line)
+              (looking-at (alist-get 'key-generic syntax))))
+        (indent-to (alist-get 'indent-command syntax)))))))
 
 ;;;###autoload
 (define-derived-mode sxhkdrc-mode prog-mode "SXHKDRC"
