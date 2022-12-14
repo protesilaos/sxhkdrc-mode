@@ -50,7 +50,7 @@ Space Partitioning Window Manager (BSPWM)."
 (defvar sxhkdrc-mode-syntax
   '((key-modifier . ( "control" "ctrl" "shift" "alt" "meta" "super" "hyper"
                       "mod1" "mod2" "mod3" "mod4" "mod5"))
-    (key-generic . "^\\<.*?\\>")
+    (key-generic . "^\\({.*?}\\|\\<.*?\\>\\)")
     (comment . "^\\([\s\t]+\\)?#.*$")
     (command . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\)")
     (indent-other . 0)
