@@ -120,7 +120,7 @@ key chord chain (demarcated by a colon or semicolon)."
   "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon)."
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
               comment-start "# "
-              comment-start-skip "#+ *")
+              comment-start-skip "#+[\t\s]*")
   (setq font-lock-defaults '(sxhkdrc-mode-font-lock-keywords)))
 
 ;;;###autoload
