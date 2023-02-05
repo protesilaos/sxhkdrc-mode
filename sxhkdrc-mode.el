@@ -101,19 +101,24 @@ key chord chain (demarcated by a colon or semicolon)."
 (defun sxhkdrc-mode-indent-line ()
   "Indent line according to `sxhkdrc-mode-syntax'."
   (interactive)
-  (let ((syntax sxhkdrc-mode-syntax))
+  (let* ((syntax sxhkdrc-mode-syntax)
+         (indent-other (alist-get 'indent-other syntax))
+         (indent-command (alist-get 'indent-command syntax))
+         indent)
     (save-excursion
       (beginning-of-line)
-      (delete-horizontal-space)
       (cond
        ((looking-at (alist-get 'comment syntax))
-        (indent-to (alist-get 'indent-other syntax)))
+        (setq indent indent-other))
        ((or (not (looking-at (alist-get 'key-generic syntax)))
-            (save-excursion
+            (progn
               (forward-line -1)
               (beginning-of-line)
               (looking-at (alist-get 'key-generic syntax))))
-        (indent-to (alist-get 'indent-command syntax)))))))
+        (setq indent indent-command))))
+    (if indent
+        (indent-to indent)
+      'no-indent)))
 
 ;;;###autoload
 (define-derived-mode sxhkdrc-mode prog-mode "SXHKDRC"
