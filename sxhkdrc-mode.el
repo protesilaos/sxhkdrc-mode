@@ -147,6 +147,8 @@ key chord chain (demarcated by a colon or semicolon)."
 ;;;###autoload
 (define-derived-mode sxhkdrc-mode prog-mode "SXHKDRC"
   "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon)."
+  ;; FIXME 2023-02-06: Why is `prog-fill-reindent-defun' not filling
+  ;; comments?
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
               comment-start "# "
               comment-start-skip "#+[\t\s]*")
