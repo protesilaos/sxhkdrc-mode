@@ -102,22 +102,46 @@ key chord chain (demarcated by a colon or semicolon)."
   "Indent line according to `sxhkdrc-mode-syntax'."
   (interactive)
   (let* ((syntax sxhkdrc-mode-syntax)
+         (command (alist-get 'command syntax))
+         (key (alist-get 'key-generic syntax))
          (indent-other (alist-get 'indent-other syntax))
          (indent-command (alist-get 'indent-command syntax))
          indent)
+    ;; The `or' statements here are needed because this will work with
+    ;; `electric-indent-mode' that does RET+TAB in one go.
     (save-excursion
-      (beginning-of-line)
+      (goto-char (line-beginning-position))
+      (skip-syntax-forward "[\t\s]" (line-end-position))
       (cond
-       ((looking-at (alist-get 'comment syntax))
-        (setq indent indent-other))
-       ((or (not (looking-at (alist-get 'key-generic syntax)))
+       ;; If the command continues to a new line by virtue of a
+       ;; trailing \ then we indent accordingly.
+       ((or (looking-at command)
             (progn
               (forward-line -1)
               (beginning-of-line)
-              (looking-at (alist-get 'key-generic syntax))))
+              (or (re-search-forward ".*\\\\$" (line-end-position) t)
+                  (looking-at key))))
+        (setq indent indent-command))
+       ;; If the previous line is a command that does not end with a
+       ;; backslash, we want to reset indentation.
+       ((or (looking-at command)
+            (progn
+              (forward-line -1)
+              (beginning-of-line)
+              (looking-at command)))
+        (setq indent indent-other))
+       ;; If we are on a key definition, the following will be a
+       ;; command.
+       ((or (looking-at key)
+            (progn
+              (forward-line -1)
+              (beginning-of-line)
+              (looking-at key)))
         (setq indent indent-command))))
     (if indent
-        (indent-to indent)
+        (progn
+          (delete-horizontal-space)
+          (indent-to indent))
       'no-indent)))
 
 ;;;###autoload
