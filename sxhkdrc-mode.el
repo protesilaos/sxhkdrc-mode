@@ -52,6 +52,7 @@ Space Partitioning Window Manager (BSPWM)."
                       "mod1" "mod2" "mod3" "mod4" "mod5"))
     (key-generic . "^\\({.*?}\\|\\<.*?\\>\\)")
     (key-line . "^\\({.*?}\\|\\<.*?\\>\\).*$")
+    (outline . "^\\(\\({.*?}\\|\\<.*?\\>\\)\\|###+ \\)")
     (comment . "^\\([\s\t]+\\)?#.*$")
     (command . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\)")
     (command-line . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\).*$")
@@ -154,6 +155,7 @@ key chord chain (demarcated by a colon or semicolon)."
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
               comment-start "# "
               comment-start-skip "#+[\t\s]*"
+              outline-regexp (alist-get 'outline sxhkdrc-mode-syntax)
               imenu-generic-expression `(("Command" ,(alist-get 'command-line sxhkdrc-mode-syntax) 0)
                                          ("Key" ,(alist-get 'key-line sxhkdrc-mode-syntax) 0)))
   (setq font-lock-defaults '(sxhkdrc-mode-font-lock-keywords)))
