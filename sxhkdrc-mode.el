@@ -114,7 +114,7 @@ key chord chain (demarcated by a colon or semicolon)."
     ;; `electric-indent-mode' that does RET+TAB in one go.
     (save-excursion
       (goto-char (line-beginning-position))
-      (skip-syntax-forward "[\t\s]" (line-end-position))
+      (skip-chars-forward "\t " (line-end-position))
       (cond
        ;; If the command continues to a new line by virtue of a
        ;; trailing \ then we indent accordingly.
