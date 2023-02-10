@@ -1,0 +1,41 @@
+#+title: Change log of sxhkdrc-mode
+#+author: Protesilaos Stavrou
+#+email: info@protesilaos.com
+#+options: ':nil toc:nil num:nil author:nil email:nil
+
+This document contains the release notes for each tagged commit on the
+project's main git repository: <https://git.sr.ht/~protesilaos/sxhkdrc-mode>.
+
+The newest release is at the top.  For further details, please consult
+the manual: <https://protesilaos.com/emacs/sxhkdrc-mode>.
+
+* 1.0.0
+
+This version addresses all the issues that were present in the
+original release of ~sxhkdrc-mode~.  The package should now provide a
+fully fledged major mode for editing =sxhkdrc= files.  Concretely, I
+have made the following user-facing changes:
+
+- Refined the indentation rules.  The indent function is robust: it
+  knows how to correctly align (i) key definitions, (ii) commands,
+  (iii) commands with continuation lines per the =\= shell script
+  notation.  Furthermore, indentation is no longer added to wrong
+  places, such as at the end of a line.
+
+- Added support for an Imenu index (use =M-x imenu= or the better =M-x
+  consult-imenu= from the ~consult~ package).  This provides a
+  minibuffer completion interface to all relevant syntactic constructs
+  in the buffer.  The index consists of entries for keys and commands.
+
+- Defined an ~outline-regexp~.  One can now use ~sxhkdrc-mode~ in
+  tandem with =M-x outline-minor-mode=.  The outline consists of any
+  comment that starts with at least three comment characters (=#=).
+  Use this to create headings in the document that can be folded in an
+  Org-style fashion and/or navigate between them with minibuffer
+  completion with the command ~consult-outline~.
+
+  [ Also see my ~logos~ package for more with pages/sections/headings. ]
+
+- Rectified the "filling" of comments.  With default key bindings,
+  this is done with =M-q= for ~fill-paragraph~.
+
