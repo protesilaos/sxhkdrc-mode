@@ -153,8 +153,8 @@ key chord chain (demarcated by a colon or semicolon)."
   ;; FIXME 2023-02-06: Why is `prog-fill-reindent-defun' not filling
   ;; comments?
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
-              comment-start "# "
-              comment-start-skip "#+[\t\s]*"
+              comment-start "#"
+              comment-start-skip (concat (regexp-quote comment-start) "+\\s *")
               outline-regexp (alist-get 'outline sxhkdrc-mode-syntax)
               imenu-generic-expression `(("Command" ,(alist-get 'command-line sxhkdrc-mode-syntax) 0)
                                          ("Key" ,(alist-get 'key-line sxhkdrc-mode-syntax) 0)))
