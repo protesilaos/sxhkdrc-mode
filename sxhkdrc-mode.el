@@ -147,11 +147,12 @@ key chord chain (demarcated by a colon or semicolon)."
           (indent-to indent))
       'no-indent)))
 
+(defvar sxhkdrc-mode-map (make-sparse-keymap)
+  "Local keymap for `sxhkdrc-mode' buffers.")
+
 ;;;###autoload
-(define-derived-mode sxhkdrc-mode prog-mode "SXHKDRC"
+(define-derived-mode sxhkdrc-mode fundamental-mode "SXHKDRC"
   "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon)."
-  ;; FIXME 2023-02-06: Why is `prog-fill-reindent-defun' not filling
-  ;; comments?
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
               comment-start "#"
               comment-start-skip (concat (regexp-quote comment-start) "+\\s *")
