@@ -157,8 +157,8 @@ key chord chain (demarcated by a colon or semicolon)."
               comment-start-skip (concat (regexp-quote comment-start) "+\\s *")
               outline-regexp (alist-get 'outline sxhkdrc-mode-syntax)
               imenu-generic-expression `(("Command" ,(alist-get 'command-line sxhkdrc-mode-syntax) 0)
-                                         ("Key" ,(alist-get 'key-line sxhkdrc-mode-syntax) 0)))
-  (setq font-lock-defaults '(sxhkdrc-mode-font-lock-keywords)))
+                                         ("Key" ,(alist-get 'key-line sxhkdrc-mode-syntax) 0))
+              font-lock-defaults '(sxhkdrc-mode-font-lock-keywords)))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("sxhkdrc\\'" . sxhkdrc-mode))
