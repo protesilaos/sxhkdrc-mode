@@ -1,6 +1,6 @@
 ;;; sxhkdrc-mode.el --- Major mode for sxhkdrc files (Simple X Hot Key Daemon) -*- lexical-binding: t -*-
 
-;; Copyright (C) 2022-2023  Free Software Foundation, Inc.
+;; Copyright (C) 2022-2024  Free Software Foundation, Inc.
 
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou General Issues <~protesilaos/general-issues@lists.sr.ht>
