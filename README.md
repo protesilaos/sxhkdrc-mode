@@ -7,9 +7,8 @@ on Xorg, such as with the Binary Space Partitioning Window Manager
 commands.  For the technicalities, read the man page `sxhkd(1)`.
 
 + Package name (GNU ELPA): `sxhkdrc-mode`
-+ Git repo on SourceHut: <https://git.sr.ht/~protesilaos/sxhkdrc-mode>
-  - Mirrors:
-    + GitHub: <https://github.com/protesilaos/sxhkdrc-mode>
-    + GitLab: <https://gitlab.com/protesilaos/sxhkdrc-mode>
-+ Mailing list: <https://lists.sr.ht/~protesilaos/general-issues>
-+ Backronym: Such Xenotropic Hot Keys Demonstrate Robustness and Configurability.
++ Git repositories:
+  + GitHub: <https://github.com/protesilaos/sxhkdrc-mode>
+  + GitLab: <https://gitlab.com/protesilaos/sxhkdrc-mode>
++ Backronym: Such Xenotropic Hot Keys Demonstrate Robustness and
+  Configurability ... mode.

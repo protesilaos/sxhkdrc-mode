@@ -3,9 +3,8 @@
 ;; Copyright (C) 2022-2024  Free Software Foundation, Inc.
 
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
-;; Maintainer: Protesilaos Stavrou General Issues <~protesilaos/general-issues@lists.sr.ht>
-;; URL: https://git.sr.ht/~protesilaos/sxhkdrc-mode
-;; Mailing-List: https://lists.sr.ht/~protesilaos/general-issues
+;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
+;; URL: https://github.com/protesilaos/sxhkdrc-mode
 ;; Version: 1.0.0
 ;; Package-Requires: ((emacs "27.1"))
 
