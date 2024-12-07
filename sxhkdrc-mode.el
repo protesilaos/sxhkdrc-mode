@@ -59,6 +59,12 @@ Space Partitioning Window Manager (BSPWM)."
     (indent-command . 4))
   "List of associations for sxhkdrc syntax.")
 
+(defvar sxhkdrc-mode-syntax-table
+  (let ((table (make-syntax-table)))
+    (modify-syntax-entry ?. "_" table)
+    table)
+  "Syntax table for `sxhkdrc-mode'.")
+
 (defun sxhkdrc-mode--modifiers-regexp (placement)
   "Return `sxhkdrc-mode--modifiers' as a single string regexp.
 PLACEMENT controls how to format the regexp: `start' is for the
@@ -152,6 +158,7 @@ key chord chain (demarcated by a colon or semicolon)."
 ;;;###autoload
 (define-derived-mode sxhkdrc-mode fundamental-mode "SXHKDRC"
   "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon)."
+  :syntax-table sxhkdrc-mode-syntax-table
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
               comment-start "#"
               comment-start-skip (concat (regexp-quote comment-start) "+\\s *")
