@@ -51,7 +51,7 @@ Space Partitioning Window Manager (BSPWM)."
                       "mod1" "mod2" "mod3" "mod4" "mod5"))
     (key-generic . "^\\({.*?}\\|\\<.*?\\>\\)")
     (key-line . "^\\({.*?}\\|\\<.*?\\>\\).*$")
-    (outline . "^###+ ")
+    (outline . "\\(####* [^\s\t\n]\\|{.*?}\\|\\<.*?\\>\\)")
     (comment . "^\\([\s\t]+\\)?#.*$")
     (command . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\)")
     (command-line . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\).*$")
@@ -155,6 +155,20 @@ key chord chain (demarcated by a colon or semicolon)."
 (defvar sxhkdrc-mode-map (make-sparse-keymap)
   "Local keymap for `sxhkdrc-mode' buffers.")
 
+(defun sxhkdrc-outline-level ()
+  "The value of variable `outline-level' for `sxhkdrc-mode'."
+  ;; Expects outline-regexp is "\\(####* [^\s\t\n]\\|{.*?}\\|\\<.*?\\>\\)"
+  ;; and point is at the beginning of a matching line.
+  (let ((len (- (match-end 0) (match-beginning 0))))
+    (cond
+     ((looking-at-p "\\({.*?}\\|\\<.*?\\>\\)")
+      1000)
+     ((looking-at "##\\(#+\\) ")
+      (- (match-end 1) (match-beginning 1)))
+     ;; Above should match everything but just in case.
+     (t
+      len))))
+
 ;;;###autoload
 (define-derived-mode sxhkdrc-mode fundamental-mode "SXHKDRC"
   "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon)."
@@ -163,6 +177,7 @@ key chord chain (demarcated by a colon or semicolon)."
               comment-start "#"
               comment-start-skip (concat (regexp-quote comment-start) "+\\s *")
               outline-regexp (alist-get 'outline sxhkdrc-mode-syntax)
+              outline-level 'sxhkdrc-outline-level
               imenu-generic-expression `(("Command" ,(alist-get 'command-line sxhkdrc-mode-syntax) 0)
                                          ("Key" ,(alist-get 'key-line sxhkdrc-mode-syntax) 0))
               font-lock-defaults '(sxhkdrc-mode-font-lock-keywords)))
