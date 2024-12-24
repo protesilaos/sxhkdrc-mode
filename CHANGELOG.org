@@ -9,7 +9,71 @@ project's main git repository: <https://github.com/protesilaos/sxhkdrc-mode>.
 The newest release is at the top.  For further details, please consult
 the manual: <https://protesilaos.com/emacs/sxhkdrc-mode>.
 
+* 1.1.0 on 2024-12-24
+:PROPERTIES:
+:CUSTOM_ID: h:340134d7-b457-4e23-b478-9ffe2ba2ffc9
+:END:
+
+This is a small set of changes to an already stable package.
+
+** The Outline of a file is more refined
+:PROPERTIES:
+:CUSTOM_ID: h:caa3ed79-ee5b-43fd-a02a-fed8a449b59f
+:END:
+
+Each file now has an outline which consists of comment pseudo headings
+(starting with three or more =#= followed by a space) and lines with a
+key binding. Before it was just the comment headings.
+
+Additionally, the heading levels are defined such that key bindings
+are inside the comment headings when we do the folding. This is what
+we have in, for example, ~elisp-mode~.
+
+The built-in ~outline-minor-mode~ benefits from this change as do
+third-party commands like ~consult-outline~ from the ~consult~
+package.
+
+For example, we can get ~outline-minor-mode~ folding of this:
+
+#+begin_src sxhkdrc-mode
+# Focus in the given direction. With Shift move the client in the
+# given direction. With Ctrl resize the frame in the given direction.
+mod4 + {_, shift +, ctrl +} {h,j,k,l}
+    herbstclient {focus,shift,resize} {left,down,up,right} {_,_,0.05}
+#+end_src
+
+To this:
+
+#+begin_src sxhkdrc-mode
+# Focus in the given direction. With Shift move the client in the
+# given direction. With Ctrl resize the frame in the given direction.
+mod4 + {_, shift +, ctrl +} {h,j,k,l}...
+#+end_src
+
+And the same idea for all heading levels.
+
+** Syntax highlighting includes the dot in command names
+:PROPERTIES:
+:CUSTOM_ID: h:51c5137f-e85c-400d-a118-0e8ecf79aa28
+:END:
+
+I made it so that when we bind a command to a key, we get its full
+name highlighted even if that includes a file name extension. So now
+the ~herbstluftwm_load_workspace_layout.sh~ in the following sample
+will get colourised instead of the name without =.sh=:
+
+#+begin_src sxhkdrc-mode
+mod4 + w ; {f,t,h,m}
+    herbstluftwm_load_workspace_layout.sh {full,third,half,middle}
+#+end_src
+
+Another benefit of this refinement is that something like the built-in
+command ~mark-sexp~ will recognise the whole name as a syntactic unit.
+
 * 1.0.0
+:PROPERTIES:
+:CUSTOM_ID: h:5faff63a-1c90-4b57-8881-ec5741403f31
+:END:
 
 This version addresses all the issues that were present in the
 original release of ~sxhkdrc-mode~.  The package should now provide a
