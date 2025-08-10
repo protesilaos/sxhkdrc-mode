@@ -19,15 +19,16 @@ Install the mode and use with any `sxhkdrc` file:
 
 ```elisp
 (use-package sxhkdrc-mode
-    :ensure t
-    :mode "sxhkdrc.*")
+  :ensure t
+  :mode "sxhkdrc.*")
 ```
 
-Restart the sxhkd daemon:
-```elisp
-; once
-(sxhkdrc-mode-restart)
+Restart the sxhkd daemon on demand with the command
+`sxhkdrc-mode-restart`. Or make it happen automatically each time you
+save a buffer that uses the `sxhkdrc-mode` by setting up the
+`sxhkdrc-mode-auto-restart` like this:
 
-; automatically on file write
-(sxhkdrc-mode-auto-restart)
+```elisp
+;; automatically reload the daemon after saving the file
+(add-hook 'sxhkdrc-mode-hook #'sxhkdrc-mode-auto-restart)
 ```
