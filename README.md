@@ -32,3 +32,12 @@ save a buffer that uses the `sxhkdrc-mode` by setting up the
 ;; automatically reload the daemon after saving the file
 (add-hook 'sxhkdrc-mode-hook #'sxhkdrc-mode-auto-restart)
 ```
+
+Putting it all together:
+
+```elisp
+(use-package sxhkdrc-mode
+  :ensure t
+  :mode "sxhkdrc.*"
+  :hook (sxhkdrc-mode . sxhkdrc-mode-auto-restart))
+```
