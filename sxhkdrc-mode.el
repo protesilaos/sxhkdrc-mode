@@ -39,6 +39,8 @@
 
 ;;; Code:
 
+(eval-when-compile (require 'subr-x))
+
 (defgroup sxhkdrc nil
   "Major mode for editing sxhkdrc files.
 SXHKD is the Simple X Hotkey Daemon which is commonly used in
@@ -151,6 +153,44 @@ key chord chain (demarcated by a colon or semicolon)."
           (delete-horizontal-space)
           (indent-to indent))
       'no-indent)))
+
+(defun sxhkdrc-mode-restart-process ()
+  "Restart the sxhkd process."
+  (when-let* ((pid (shell-command-to-string "pidof sxhkd")))
+    (call-process "kill" nil 0 nil "-USR1" (string-trim pid))
+    t))
+
+(declare-function notifications-notify "notifications" (&rest params))
+
+(defun sxhkdrc-mode-restart-notify ()
+  "Notify that the sxhkd process has been restarted.
+Read Info node `(elisp) Desktop Notifications' for details."
+  (when (featurep 'dbusbind)
+    (unless (fboundp 'notifications-notify)
+      (require 'notifications))
+    (notifications-notify
+     :title "sxhkdrc-mode"
+     :body "Restarted the SXHKD process"
+     :app-name "Emacs"
+     :app-icon 'emacs
+     :urgency 'normal
+     :sound-file nil)))
+
+(defun sxhkdrc-mode-restart ()
+  "Restart the sxhkd process."
+  (interactive)
+  (when (sxhkdrc-mode-restart-process)
+    (sxhkdrc-mode-restart-notify)))
+
+(define-minor-mode sxhkdrc-mode-auto-restart
+  "Automatically restart sxhkd after saving its file.
+To set this minor mode up when opening a file that uses the
+`sxhkdrc-mode', use the hook `sxhkdrc-mode-hook'."
+  :global nil
+  :init-value nil
+  (if sxhkdrc-mode-auto-restart
+      (add-hook 'after-save-hook #'sxhkdrc-mode-restart nil :local-only)
+    (remove-hook 'after-save-hook #'sxhkdrc-mode-restart :local-only)))
 
 (defvar sxhkdrc-mode-map (make-sparse-keymap)
   "Local keymap for `sxhkdrc-mode' buffers.")
