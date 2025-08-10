@@ -12,3 +12,22 @@ technicalities, read the man page `sxhkd(1)`.
   + GitLab: <https://gitlab.com/protesilaos/sxhkdrc-mode>
 + Backronym: Such Xenotropic Hot Keys Demonstrate Robustness and
   Configurability ... mode.
+
+## Usage
+
+Install the mode and use with any `sxhkdrc` file:
+
+```elisp
+(use-package sxhkdrc-mode
+    :ensure t
+    :mode "sxhkdrc.*")
+```
+
+Restart the sxhkd daemon:
+```elisp
+; once
+(sxhkdrc-mode-restart)
+
+; automatically on file write
+(sxhkdrc-mode-auto-restart)
+```
