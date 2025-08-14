@@ -9,6 +9,51 @@ project's main git repository: <https://github.com/protesilaos/sxhkdrc-mode>.
 The newest release is at the top.  For further details, please consult
 the manual: <https://protesilaos.com/emacs/sxhkdrc-mode>.
 
+* 1.2.0 on 2025-08-14
+:PROPERTIES:
+:CUSTOM_ID: h:485a3878-d01f-4f3a-af79-a12b2294921f
+:END:
+
+The package is stable and gets the job done. This version introduces a
+small new feature to restart the daemon from inside Emacs. Thanks to
+Jonathan Neidel for making the suggestion in issue 1:
+<https://github.com/protesilaos/sxhkdrc-mode/issues/1>.
+
+** Reload the SXHKD daemon on demand
+:PROPERTIES:
+:CUSTOM_ID: h:7cfa6dc6-1d8a-4910-bad0-3a0675a313c9
+:END:
+
+The command ~sxhkdrc-mode-restart~ sends a signal to the ~sxhkd~
+process which causes it to restart, thus reloading its configuration
+file. Use this after modifying the =sxhkdrc= to make the new changes
+available.
+
+** Automatically reload the daemon on file save
+:PROPERTIES:
+:CUSTOM_ID: h:799a92c9-39c4-4682-8438-ffa0050bcfde
+:END:
+
+The function ~sxhkdrc-mode-auto-restart~ can be assigned to the
+~sxhkdrc-mode-hook~ to automatically reload the daemon after the
+=sxhkdrc= file is saved (well, technically, after the file which is
+using the ~sxhkdrc-mode~ is saved).
+
+** Sample configuration with ~use-package~
+:PROPERTIES:
+:CUSTOM_ID: h:6ac9a539-f61f-46d9-ac67-36f995c148e1
+:END:
+
+The project's =README.md= includes this sample configuration:
+
+#+begin_src emacs-lisp
+(use-package sxhkdrc-mode
+  :ensure t
+  :mode "sxhkdrc.*" ; if you want more than just "sxhkdrc"
+  :commands (sxhkdrc-mode-restart)
+  :hook (sxhkdrc-mode . sxhkdrc-mode-auto-restart))
+#+end_src
+
 * 1.1.0 on 2024-12-24
 :PROPERTIES:
 :CUSTOM_ID: h:340134d7-b457-4e23-b478-9ffe2ba2ffc9
@@ -102,4 +147,3 @@ have made the following user-facing changes:
 
 - Rectified the "filling" of comments.  With default key bindings,
   this is done with =M-q= for ~fill-paragraph~.
-
