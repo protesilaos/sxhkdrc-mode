@@ -138,7 +138,7 @@ key chord chain (demarcated by a colon or semicolon)."
          (key (alist-get 'key-generic syntax))
          (indent-other (alist-get 'indent-other syntax))
          (indent-command (alist-get 'indent-command syntax))
-         indent)
+         (indent nil))
     ;; The `or' statements here are needed because this will work with
     ;; `electric-indent-mode' that does RET+TAB in one go.
     (save-excursion
