@@ -83,19 +83,19 @@ key chord chain (demarcated by a colon or semicolon)."
 
 (defface sxhkdrc-mode-primary-modifier
   '((t :inherit font-lock-keyword-face))
-  "Face for sxhkd modifiers at the start of a key sequence or chord.")
+  "Face for modifiers at the start of a key sequence or chord.")
 
 (defface sxhkdrc-mode-generic-key
   '((t :inherit font-lock-builtin-face))
-  "Face for sxhkd generic keys at the start of a sequence.")
+  "Face for generic keys at the start of a sequence.")
 
 (defface sxhkdrc-mode-command
   '((t :inherit font-lock-function-name-face))
-  "Face for the first part of an sxhkd command.")
+  "Face for the first part of a command.")
 
 (defface sxhkdrc-mode-command-prefix
   '((t :inherit font-lock-type-face))
-  "Face for the SXHKD command prefix indicator: [;@~].")
+  "Face for the command prefix indicator: [;@~].")
 
 (defface sxhkdrc-mode-continuation-line
   '((t :inherit font-lock-constant-face))
