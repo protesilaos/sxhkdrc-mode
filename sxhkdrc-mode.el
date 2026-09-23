@@ -28,6 +28,11 @@
 ;; Major mode for editing sxhkdrc files (Simple X Hot Key Daemon).  It
 ;; defines basic fontification rules and supports indentation.
 ;;
+;; The buffer-local minor mode `sxhkdrc-mode-auto-restart' can be
+;; enabled in files that use the `sxhkdrc-mode' to automatically
+;; restart SXHKD after saving the file, thus activating the new
+;; hotkeys.
+;;
 ;; SXHKD is the Simple X Hot Key Daemon which is commonly used in
 ;; minimalist desktop sessions on Xorg, such as with the Binary Space
 ;; Partitioning Window Manager (BSPWM) or HerbstluftWM.
