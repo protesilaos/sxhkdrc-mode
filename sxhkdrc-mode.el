@@ -99,6 +99,11 @@ key chord chain (demarcated by a colon or semicolon)."
   '((t :inherit font-lock-function-name-face))
   "Face for the first part of a command.")
 
+(define-obsolete-face-alias
+ 'sxhkdrc-mode-command-async
+ 'sxhkdrc-mode-command-prefix
+ "1.3.0")
+
 (defface sxhkdrc-mode-command-prefix
   '((t :inherit font-lock-type-face))
   "Face for the command prefix indicator: [;@~].")
