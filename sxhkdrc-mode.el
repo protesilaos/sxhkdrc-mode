@@ -49,8 +49,8 @@ Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
   :group 'programming)
 
 (defvar sxhkdrc-mode-syntax
-  '((key-modifier . ( "control" "ctrl" "shift" "alt" "meta" "super" "hyper"
-                      "mod1" "mod2" "mod3" "mod4" "mod5"))
+  '((key-modifier . ( "super" "hyper" "meta" "alt" "control" "ctrl" "shift"
+                      "mode_switch" "lock" "mod1" "mod2" "mod3" "mod4" "mod5" "any"))
     (key-generic . "^\\({.*?}\\|\\<.*?\\>\\)")
     (key-line . "^\\({.*?}\\|\\<.*?\\>\\).*$")
     (outline . "\\(####* [^\s\t\n]\\|{.*?}\\|\\<.*?\\>\\)")
