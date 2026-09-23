@@ -53,6 +53,8 @@ Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
                       "mode_switch" "lock" "mod1" "mod2" "mod3" "mod4" "mod5" "any"))
     (key-generic . "^\\({.*?}\\|\\<.*?\\>\\)")
     (key-line . "^\\({.*?}\\|\\<.*?\\>\\).*$")
+    (key-chain-one-off . " \\(;\\) ")
+    (key-chain-continuous . " \\(:\\) ")
     (outline . "\\(####* [^\s\t\n]\\|{.*?}\\|\\<.*?\\>\\)")
     (comment . "^\\([\s\t]+\\)?#.*$")
     (command . "^[\s\t]+\\([;@~]\\)?\\(\\_<.*?\\_>\\)")
@@ -99,6 +101,14 @@ key chord chain (demarcated by a colon or semicolon)."
   '((t :inherit font-lock-constant-face))
   "Face for continuation lines in commands (backslash at the end of line).")
 
+(defface sxhkdrc-mode-chain-one-off-separator
+  '((t :inherit success))
+  "Face for the key chord chain one-off separator.")
+
+(defface sxhkdrc-mode-chain-continuous-separator
+  '((t :inherit warning))
+  "Face for the key chord chain continuous separator.")
+
 (defconst sxhkdrc-mode-font-lock-keywords
   (let ((syntax sxhkdrc-mode-syntax))
     `((,(sxhkdrc-mode--modifiers-regexp 'start)
@@ -112,6 +122,10 @@ key chord chain (demarcated by a colon or semicolon)."
        (0 'font-lock-comment-face t t))
       (,(alist-get 'key-generic syntax)
        (0 'sxhkdrc-mode-generic-key))
+      (,(alist-get 'key-chain-one-off syntax)
+       (1 'sxhkdrc-mode-chain-one-off-separator t t))
+      (,(alist-get 'key-chain-continuous syntax)
+       (1 'sxhkdrc-mode-chain-continuous-separator t t))
       (,(alist-get 'continuation-line syntax)
        (0 'sxhkdrc-mode-continuation-line))))
   "Fontification of sxhkdrc files.")
