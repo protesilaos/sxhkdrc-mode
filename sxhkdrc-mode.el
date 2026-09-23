@@ -25,8 +25,9 @@
 
 ;;; Commentary:
 ;;
-;; Major mode for editing sxhkdrc files (Simple X Hot Key Daemon).  It
-;; defines basic fontification rules and supports indentation.
+;; The `sxhkdrc-mode' is a major mode for editing sxhkdrc files
+;; (Simple X Hot Key Daemon).  It defines fontification rules and
+;; supports indentation.
 ;;
 ;; The buffer-local minor mode `sxhkdrc-mode-auto-restart' can be
 ;; enabled in files that use the `sxhkdrc-mode' to automatically
