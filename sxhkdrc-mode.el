@@ -57,10 +57,7 @@ Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
     (comment . "^\\([\s\t]+\\)?#.*$")
     (command . "^[\s\t]+\\([;@~]\\)?\\(\\_<.*?\\_>\\)")
     (command-line . "^[\s\t]+\\([;@~]\\)?\\(\\_<.*?\\_>\\).*$")
-    ;; NOTE 2026-09-23: I was testing this with `re-builder'.  All I
-    ;; want is to match \ at the end of the line, but I could only do
-    ;; it with these many backslashes...
-    (continuation-line . "\\\\\\\\?")
+    (continuation-line . "\\\\$")
     (indent-other . 0)
     (indent-command . 4))
   "List of associations for sxhkdrc syntax.")
