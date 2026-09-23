@@ -187,7 +187,7 @@ key chord chain (demarcated by a colon or semicolon)."
 ;; throws an error.  It is not important, but I am commenting here to
 ;; remember I tried this.
 (defun sxhkdrc-mode-restart-process ()
-  "Restart the sxhkd process."
+  "Restart the SXHKD process."
   (when-let* ((pid (shell-command-to-string "pidof sxhkd")))
     (call-process "kill" nil 0 nil "-USR1" (string-trim pid))
     t))
@@ -195,7 +195,7 @@ key chord chain (demarcated by a colon or semicolon)."
 (declare-function notifications-notify "notifications" (&rest params))
 
 (defun sxhkdrc-mode-restart-notify ()
-  "Notify that the sxhkd process has been restarted.
+  "Notify that the SXHKD process has been restarted.
 Read Info node `(elisp) Desktop Notifications' for details."
   (when (featurep 'dbusbind)
     (unless (fboundp 'notifications-notify)
@@ -209,13 +209,13 @@ Read Info node `(elisp) Desktop Notifications' for details."
      :sound-file nil)))
 
 (defun sxhkdrc-mode-restart ()
-  "Restart the sxhkd process."
+  "Restart the SXHKD process."
   (interactive)
   (when (sxhkdrc-mode-restart-process)
     (sxhkdrc-mode-restart-notify)))
 
 (define-minor-mode sxhkdrc-mode-auto-restart
-  "Automatically restart sxhkd after saving its file.
+  "Automatically restart SXHKD after saving its file.
 To set this minor mode up when opening a file that uses the
 `sxhkdrc-mode', use the hook `sxhkdrc-mode-hook'."
   :global nil
@@ -245,7 +245,7 @@ To set this minor mode up when opening a file that uses the
 
 ;;;###autoload
 (define-derived-mode sxhkdrc-mode fundamental-mode "SXHKDRC"
-  "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon)."
+  "Major mode for editing sxhkdrc files (Simple X Hot Key Daemon or SXHKD)."
   :syntax-table sxhkdrc-mode-syntax-table
   (setq-local indent-line-function 'sxhkdrc-mode-indent-line
               comment-start "#"
