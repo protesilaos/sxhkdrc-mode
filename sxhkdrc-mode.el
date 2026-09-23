@@ -134,11 +134,12 @@ key chord chain (demarcated by a colon or semicolon)."
        ;; If the command continues to a new line by virtue of a
        ;; trailing \ then we indent accordingly.
        ((or (looking-at command)
-            (progn
-              (forward-line -1)
-              (beginning-of-line)
-              (or (re-search-forward ".*\\\\$" (line-end-position) t)
-                  (looking-at key))))
+            (and-let* ((continuation (alist-get 'continuation-line sxhkdrc-mode-syntax)))
+              (progn
+                (forward-line -1)
+                (beginning-of-line)
+                (or (re-search-forward continuation (line-end-position) t)
+                    (looking-at key)))))
         (setq indent indent-command))
        ;; If the previous line is a command that does not end with a
        ;; backslash, we want to reset indentation.
