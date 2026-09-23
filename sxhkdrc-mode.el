@@ -57,6 +57,10 @@ Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
     (comment . "^\\([\s\t]+\\)?#.*$")
     (command . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\)")
     (command-line . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\).*$")
+    ;; NOTE 2026-09-23: I was testing this with `re-builder'.  All I
+    ;; want is to match \ at the end of the line, but I could only do
+    ;; it with these many backslashes...
+    (continuation-line . "\\\\\\\\?")
     (indent-other . 0)
     (indent-command . 4))
   "List of associations for sxhkdrc syntax.")
@@ -94,6 +98,10 @@ key chord chain (demarcated by a colon or semicolon)."
   '((t :inherit bold))
   "Face for the sxhkd asynchronous command indicator.")
 
+(defface sxhkdrc-mode-continuation-line
+  '((t :inherit font-lock-constant-face))
+  "Face for continuation lines in commands (backslash at the end of line).")
+
 (defconst sxhkdrc-mode-font-lock-keywords
   (let ((syntax sxhkdrc-mode-syntax))
     `((,(sxhkdrc-mode--modifiers-regexp 'start)
@@ -106,7 +114,9 @@ key chord chain (demarcated by a colon or semicolon)."
       (,(alist-get 'comment syntax)
        (0 'font-lock-comment-face t t))
       (,(alist-get 'key-generic syntax)
-       (0 'sxhkdrc-mode-generic-key))))
+       (0 'sxhkdrc-mode-generic-key))
+      (,(alist-get 'continuation-line syntax)
+       (0 'sxhkdrc-mode-continuation-line))))
   "Fontification of sxhkdrc files.")
 
 (defun sxhkdrc-mode-indent-line ()
