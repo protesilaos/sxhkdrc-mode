@@ -9,6 +9,52 @@ project's main git repository: <https://github.com/protesilaos/sxhkdrc-mode>.
 The newest release is at the top.  For further details, please consult
 the manual: <https://protesilaos.com/emacs/sxhkdrc-mode>.
 
+* 1.3.0 on 2026-09-23
+:PROPERTIES:
+:CUSTOM_ID: h:b2c2ae7e-543e-4737-96ff-7488fded529e
+:END:
+
+This version makes quality-of-life refinements to an already stable package.
+
+** Fontification of key chord chains
+:PROPERTIES:
+:CUSTOM_ID: h:b627eb16-9dbc-4cfd-9434-b56da4acf68d
+:END:
+
+Key chord chains are written with the semicolon (=;=) or colon (=:=)
+characters. The former refers to one-shot operations while the latter
+is for continuous ones that exit only with =Escape=.
+
+The corresponding faces are ~sxhkdrc-mode-chain-one-off-separator~ and
+~sxhkdrc-mode-chain-continuous-separator~.
+
+** Support for all command prefixes
+:PROPERTIES:
+:CUSTOM_ID: h:be96f544-e843-4741-8667-a79873b81d3b
+:END:
+
+The previous version only covered the =;= in front of a command. The
+prefixes =@= and =~= are now covered as well. They are all using teh
+face ~sxhkdrc-mode-command-prefix~, which supersedes the deprecated
+~sxhkdrc-mode-command-async~.
+
+** Continuation lines in commands are highlighted as well
+:PROPERTIES:
+:CUSTOM_ID: h:26e26c0f-9767-4c94-b953-0fe065bc4609
+:END:
+
+This concerns the backslash character (=\=) at the end of a line. The
+applicable face is ~sxhkdrc-mode-continuation-line~.
+
+** All modifiers are covered
+:PROPERTIES:
+:CUSTOM_ID: h:4df52295-7aa1-41a7-9358-a23bcae12fd3
+:END:
+
+The updated manpage of SXHKD, =sxhkd(1)=, mentions all the modifiers
+that it supports. I have extended support for all of them in the order
+they appear in the manual.
+
 * 1.2.0 on 2025-08-14
 :PROPERTIES:
 :CUSTOM_ID: h:485a3878-d01f-4f3a-af79-a12b2294921f
