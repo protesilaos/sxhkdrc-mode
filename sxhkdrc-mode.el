@@ -55,8 +55,8 @@ Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
     (key-line . "^\\({.*?}\\|\\<.*?\\>\\).*$")
     (outline . "\\(####* [^\s\t\n]\\|{.*?}\\|\\<.*?\\>\\)")
     (comment . "^\\([\s\t]+\\)?#.*$")
-    (command . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\)")
-    (command-line . "^[\s\t]+\\([;]\\)?\\(\\_<.*?\\_>\\).*$")
+    (command . "^[\s\t]+\\([;@~]\\)?\\(\\_<.*?\\_>\\)")
+    (command-line . "^[\s\t]+\\([;@~]\\)?\\(\\_<.*?\\_>\\).*$")
     ;; NOTE 2026-09-23: I was testing this with `re-builder'.  All I
     ;; want is to match \ at the end of the line, but I could only do
     ;; it with these many backslashes...
@@ -94,9 +94,9 @@ key chord chain (demarcated by a colon or semicolon)."
   '((t :inherit font-lock-function-name-face))
   "Face for the first part of an sxhkd command.")
 
-(defface sxhkdrc-mode-command-async
-  '((t :inherit bold))
-  "Face for the sxhkd asynchronous command indicator.")
+(defface sxhkdrc-mode-command-prefix
+  '((t :inherit font-lock-type-face))
+  "Face for the SXHKD command prefix indicator: [;@~].")
 
 (defface sxhkdrc-mode-continuation-line
   '((t :inherit font-lock-constant-face))
@@ -109,7 +109,7 @@ key chord chain (demarcated by a colon or semicolon)."
       (,(sxhkdrc-mode--modifiers-regexp 'chord)
        (2 'sxhkdrc-mode-primary-modifier))
       (,(alist-get 'command syntax)
-       (1 'sxhkdrc-mode-command-async t t)
+       (1 'sxhkdrc-mode-command-prefix t t)
        (2 'sxhkdrc-mode-command t t))
       (,(alist-get 'comment syntax)
        (0 'font-lock-comment-face t t))
