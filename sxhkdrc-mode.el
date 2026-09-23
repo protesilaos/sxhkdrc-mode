@@ -177,6 +177,10 @@ key chord chain (demarcated by a colon or semicolon)."
           (indent-to indent))
       'no-indent)))
 
+;; TODO 2026-09-23: Can `sxhkdrc-mode-restart-process' be done without
+;; `shell-command-to-string'?  I tried (process-id "sxhkd") but it
+;; throws an error.  It is not important, but I am commenting here to
+;; remember I tried this.
 (defun sxhkdrc-mode-restart-process ()
   "Restart the sxhkd process."
   (when-let* ((pid (shell-command-to-string "pidof sxhkd")))
