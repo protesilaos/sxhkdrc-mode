@@ -72,10 +72,11 @@ Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
 PLACEMENT controls how to format the regexp: `start' is for the
 beginning of the line, `chord' is when the modifier is part of a
 key chord chain (demarcated by a colon or semicolon)."
-  (let ((mods (alist-get 'key-modifier sxhkdrc-mode-syntax)))
-    (pcase placement
-      ('start (format "^\\(%s\\)" (mapconcat #'identity mods "\\|")))
-      ('chord (format "[;:]\\([\s\t]\\)?\\(%s\\)" (mapconcat #'identity mods "\\|"))))))
+  (if-let* ((mods (alist-get 'key-modifier sxhkdrc-mode-syntax)))
+      (pcase placement
+        ('start (format "^\\(%s\\)" (mapconcat #'identity mods "\\|")))
+        ('chord (format "[;:]\\([\s\t]\\)?\\(%s\\)" (mapconcat #'identity mods "\\|"))))
+    (error "Cannot find modifiers in `sxhkdrc-mode-syntax'")))
 
 (defface sxhkdrc-mode-primary-modifier
   '((t :inherit font-lock-keyword-face))
