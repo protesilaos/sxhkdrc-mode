@@ -215,6 +215,8 @@ To set this minor mode up when opening a file that uses the
 `sxhkdrc-mode', use the hook `sxhkdrc-mode-hook'."
   :global nil
   :init-value nil
+  (unless (derived-mode-p 'sxhkdrc-mode)
+    (user-error "Can only use `sxhkdrc-mode-auto-restart' in `sxhkdrc-mode' files"))
   (if sxhkdrc-mode-auto-restart
       (add-hook 'after-save-hook #'sxhkdrc-mode-restart nil :local-only)
     (remove-hook 'after-save-hook #'sxhkdrc-mode-restart :local-only)))
