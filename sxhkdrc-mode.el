@@ -30,7 +30,7 @@
 ;;
 ;; SXHKD is the Simple X Hot Key Daemon which is commonly used in
 ;; minimalist desktop sessions on Xorg, such as with the Binary Space
-;; Partitioning Window Manager (BSPWM).
+;; Partitioning Window Manager (BSPWM) or HerbstluftWM.
 ;;
 ;; Why call the package SXHKDRC-something?  One school of thought is
 ;; that it is named after the files it applies to.  The heterodox
@@ -45,7 +45,7 @@
   "Major mode for editing sxhkdrc files.
 SXHKD is the Simple X Hotkey Daemon which is commonly used in
 minimalist desktop sessions on Xorg, such as with the Binary
-Space Partitioning Window Manager (BSPWM)."
+Space Partitioning Window Manager (BSPWM) or HerbstluftWM."
   :group 'programming)
 
 (defvar sxhkdrc-mode-syntax
